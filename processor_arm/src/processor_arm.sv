@@ -1,4 +1,8 @@
 // TOP-LEVEL PROCESSOR (placa Boolean)
+// Instancia el processor_core (CPU + memorias) y le agrega los perifericos
+// de la placa: switches/LEDs mapeados en memoria, displays de 7 segmentos
+// y el divisor de clock.
+
 module processor_arm #(parameter N = 64, parameter bit PIPELINE = 0, parameter bit SIM = 0)
 							(input logic [15:0] i_sw,
                              input logic i_mclk,

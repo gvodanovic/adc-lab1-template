@@ -59,7 +59,7 @@ module processor_core #(parameter N = 64, parameter bit PIPELINE = 0)
 									.DM_readEnable(DM_readEnable));
 
 
-	imem 				instrMem (.addr(IM_address[7:2]),
+	imem 				instrMem (.addr(IM_address[8:2]),
 									.q(q));
 
 
@@ -71,9 +71,7 @@ module processor_core #(parameter N = 64, parameter bit PIPELINE = 0)
 									.readData(DM_readData_mem),
 									.dump(dump));
 
-	// mmio_sel/mmio_readData: permiten que un nivel superior (ej. processor_arm,
-	// mapeo de switches en memoria) reemplace el dato leido de dmem. Sin conectar,
-	// quedan en su valor por defecto y el comportamiento es identico al original.
+
 	assign DM_readData = mmio_sel ? mmio_readData : DM_readData_mem;
 
 endmodule

@@ -1,9 +1,29 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
+//
+// Create Date: 05.02.2025 16:59:22
+// Design Name:
+// Module Name: disp7seg_controller
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description:
+//
+// Dependencies:
+//
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+//
+//////////////////////////////////////////////////////////////////////////////////
+
 
 module disp7seg_controller(
     input clk,
-    input [3:0] bcd_dig [0:3],      
-    input [3:0] blank_dig,          
+    input [3:0] bcd_dig [0:3],      // bcd_digX[3:0] -> bcd value
+    input [3:0] blank_dig,          // blank_dig[X] -> 1 = digit blank / 0 = digit enable
     output [7:0] seg,
     output [3:0] dig_en
     );
@@ -39,8 +59,10 @@ module disp7seg_controller(
         current_digit <= 2'h0;
     end
 
+    // Generacion del contador de sync
     always_ff @(posedge clk) cnt <= cnt + 1;
 
+    // Generacion de las señales de sync para digitos multiplexados del display
     always_ff @(posedge cnt[1]) begin
         if (cnt[4:2] == 3'b000) begin
             disp_a <= 4'hF;
