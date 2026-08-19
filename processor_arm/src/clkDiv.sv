@@ -11,8 +11,8 @@ module clkDiv #(parameter bit SIM = 0)
 		if(reset) clk_divider  <= '0;
 		else clk_divider <= clk_divider + 1;
 
-	// SIM=1: bit rapido, para analizar en simulador
-	// SIM=0: bit lento, para grabar en FPGA
+	// SIM=1: clk rapido, para analizar en simulador
+	// SIM=0: clk lento, para grabar en FPGA
 	generate
 		if (SIM) begin : gen_sim
 			assign clkDiv = clk_divider[0];

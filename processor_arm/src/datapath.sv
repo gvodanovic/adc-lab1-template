@@ -150,7 +150,6 @@ module datapath #(parameter N = 64, parameter bit PIPELINE = 0)
 										.memtoReg(memtoReg),
 										.writeData3_W(writeData3));
 
-		// Salida de señales de control:
 		assign DM_writeEnable = memWrite;
 		assign DM_readEnable = memRead;
 
