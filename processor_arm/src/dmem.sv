@@ -17,7 +17,7 @@ module dmem (input  logic        clk, memWrite, memRead,
 		if (memRead) readData = mem[address];
 		else         readData = '0;
 
-	always @(posedge dump) begin
+	always_ff @(posedge dump) begin
 		integer dumpfile;
 		integer i;
 		dumpfile = $fopen(MEMORY_DUMP_FILE, "w");
